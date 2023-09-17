@@ -2,10 +2,7 @@ var isResolutionHidden = true;
 
 var resolutionVideo = null;
 
-var optionsHeaders = {
-    method: 'POST',
-    headers: {"Content-type": "application/json;charset=UTF-8"}
-}
+let serverURL = 'http://localhost:4000';
 
 function downloadVideo() {
     const url = document.querySelector('.content__input-link').value;
@@ -16,27 +13,13 @@ function downloadVideo() {
         resolutionVideo: resolutionVideo
     };
 
-    optionsHeaders = {...optionsHeaders, body: JSON.stringify(dataDownload)};
-    fetch(`http://localhost:4000/download`, optionsHeaders)
-        .then(resp => resp.status === 200 ? resp.blob() : Promise.reject('Something wrong!'))
-      .then(blob => {
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.style.display = 'none';
-          a.href = url;
+    if (isResolutionHidden) {
+        downloadMp3(url);
+        return;
+    }
 
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(url);
-
-          window.alert('File Downloaded');
-          // window.location.href = ``;
-    }).catch(error => {
-        console.error(error);
-        alert('Error to download!');
-    }).finally(() => {
-
-    });
+    downloadMp4(url)
+    return;
 }
 
 function selectedType(event) {
@@ -47,7 +30,30 @@ function selectedType(event) {
     resolutionVideo = !resolutionVideo && !isResolutionHidden ? '720p' : resolutionVideo;
 }
 
-
 function selectedResolution(event) {
     resolutionVideo = event.target.value;
+}
+
+async function downloadMp3(query) {
+    await fetch(`${serverURL}/downloadmp3?url=${query}`)
+        .then(res => {
+            var a = document.createElement('a');
+            a.href = `${serverURL}/downloadmp3?url=${query}`;
+            a.setAttribute('download', '');
+            a.click();
+    }).catch(error => {
+        alert("Invalid url", error);
+    });
+}
+
+async function downloadMp4(query) {
+    await fetch(`${serverURL}/downloadmp4?url=${query}`)
+        .then(res => {
+            var a = document.createElement('a');
+            a.href = `${serverURL}/downloadmp4?url=${query}`;
+            a.setAttribute('download', '');
+            a.click();
+    }).catch(error => {
+        alert('Invalid url', error);
+    });
 }
