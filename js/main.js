@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const ytdl = require('ytdl-core');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 
 const app = express();
@@ -9,6 +11,8 @@ app.listen(4000, () => {
 });
 app.use(cors());
 app.use(express.json());
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/downloadmp3', async (req, res, next) => {
     try {

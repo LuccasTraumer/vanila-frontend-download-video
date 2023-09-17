@@ -1,0 +1,79 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Video Download Application API",
+    "description": "Download Videos from Youtube",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+  },
+  "paths": {
+    "/downloadmp3": {
+      "get": {
+        "description": "Download Audio",
+        "parameters": [{
+          "name": "DownloadMP3",
+          "in": "body",
+          "description": "Download on type MP3",
+          "schema": {
+            "type": "object",
+            "required": ["url"]
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Audio data",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/downloadmp4": {
+      "get": {
+        "description": "Download Video",
+        "parameters": [{
+          "name": "DownloadMP4",
+          "in": "body",
+          "description": "Download on type MP4",
+          "schema": {
+            "type": "object",
+            "required": ["url"]
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Video data",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  }
+}
