@@ -43,6 +43,7 @@ app.get('/downloadmp3', async (req, res, next) => {
 app.get('/downloadmp4', async (req, res, next) => {
     try {
         let url = req.query.url;
+        let resolution = req.query.resolution;
         if(!ytdl.validateURL(url)) {
             return res.sendStatus(400);
         }
@@ -51,6 +52,7 @@ app.get('/downloadmp4', async (req, res, next) => {
         await ytdl.getInfo(url).then(res => {
             title = res.videoDetails.title;
         });
+
 
         await ytdl.getBasicInfo(url, {
             format: 'mp4'
@@ -62,7 +64,8 @@ app.get('/downloadmp4', async (req, res, next) => {
         res.header('Content-Disposition', `attachment; filename="${title}.mp4"`);
         ytdl(url, {
             format: 'mp4',
-            filter: 'videoandaudio'
+            filter: 'videoandaudio',
+            quality: resolution
         }).pipe(res);
 
     } catch (err) {

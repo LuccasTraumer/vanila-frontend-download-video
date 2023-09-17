@@ -7,19 +7,7 @@ let serverURL = 'http://localhost:4000';
 function downloadVideo() {
     const url = document.querySelector('.content__input-link').value;
 
-    const dataDownload = {
-        url,
-        typeFile: isResolutionHidden ? 'mp3' : 'mp4',
-        resolutionVideo: resolutionVideo
-    };
-
-    if (isResolutionHidden) {
-        downloadMp3(url);
-        return;
-    }
-
-    downloadMp4(url)
-    return;
+    isResolutionHidden ? downloadMp3(url) : downloadMp4(url);
 }
 
 function selectedType(event) {
@@ -47,10 +35,10 @@ async function downloadMp3(query) {
 }
 
 async function downloadMp4(query) {
-    await fetch(`${serverURL}/downloadmp4?url=${query}`)
+    await fetch(`${serverURL}/downloadmp4?url=${query}&resolution=${resolutionVideo}`)
         .then(res => {
             var a = document.createElement('a');
-            a.href = `${serverURL}/downloadmp4?url=${query}`;
+            a.href = `${serverURL}/downloadmp4?url=${query}&resolution=${resolutionVideo}`;
             a.setAttribute('download', '');
             a.click();
     }).catch(error => {
