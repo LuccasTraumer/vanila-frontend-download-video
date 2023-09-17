@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-areas:
+    "input button"
+    "type resolution";
+  gap: .5rem;
+  align-items: center;
+  justify-content: center;
+  max-height: 100vh;
+  height: 99vh;
+
+  background: #F0F0F4;
+
+  &__input-link {
+    padding: 1rem 3rem;
+    border-radius: .5rem;
+    border: none;
+    grid-area: input;
+  }
+
+  &__selected-type {
+    grid-area: type;
+    padding: .5rem;
+
+    &--option {
+      text-transform: uppercase;
+    }
+  }
+
+  &__selected-resolution {
+    grid-area: resolution;
+    padding: .5rem;
+
+    &--option {
+      text-transform: uppercase;
+    }
+  }
+
+  &__button {
+    grid-area: button;
+    border: none;
+    background: linear-gradient(178.47deg,#e10c66 -27.8%,#e32121 180.72%);
+    border-radius: .5rem;
+    img {
+      height: 4vh;
+      border: inherit;
+
+    }
+  }
+
+}

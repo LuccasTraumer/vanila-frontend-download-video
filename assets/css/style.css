@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-areas: "input button" "type resolution";
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  max-height: 100vh;
+  height: 99vh;
+  background: #F0F0F4;
+}
+.content__input-link {
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  border: none;
+  grid-area: input;
+}
+.content__selected-type {
+  grid-area: type;
+  padding: 0.5rem;
+}
+.content__selected-type--option {
+  text-transform: uppercase;
+}
+.content__selected-resolution {
+  grid-area: resolution;
+  padding: 0.5rem;
+}
+.content__selected-resolution--option {
+  text-transform: uppercase;
+}
+.content__button {
+  grid-area: button;
+  border: none;
+  background: linear-gradient(178.47deg, #e10c66 -27.8%, #e32121 180.72%);
+  border-radius: 0.5rem;
+}
+.content__button img {
+  height: 4vh;
+  border: inherit;
+}
+
+/*# sourceMappingURL=style.css.map */

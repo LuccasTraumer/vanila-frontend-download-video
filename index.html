@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="js/index.js" defer></script>
+</head>
+<body>
+<main class="content">
+    <input class="content__input-link" type="text" id="link" name="link" placeholder="Insert youtube link here">
+
+    <select name="typeFile" id="typeFile" class="content__selected-type" onclick="selectedType(event)">
+        <option value="mp3" selected class="content__selected-type--option">
+            mp3
+        </option>
+        <option value="mp4" class="content__selected-type--option">
+            mp4
+        </option>
+    </select>
+
+    <select name="resolution" hidden id="resolution" class="content__selected-resolution" onclick="selectedResolution(event)">
+        <option value="240p" class="content__selected-resolution--option">
+            240p
+        </option>
+        <option value="360p" class="content__selected-resolution--option">
+            360p
+        </option>
+        <option value="720p" selected class="content__selected-resolution--option">
+            720p
+        </option>
+        <option value="1080p" class="content__selected-resolution--option">
+            1080p
+        </option>
+    </select>
+
+    <button class="content__button" onclick="downloadVideo()">
+        <img src="assets/img/download-svgrepo-com.svg" alt="">
+    </button>
+</main>
+
+</body>
+</html>
